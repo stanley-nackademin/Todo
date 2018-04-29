@@ -55,8 +55,7 @@ public final class UserResource {
 
     @GET
     public Response getAll() {
-
-        return null;
+        return Response.ok(service.getAllUsers()).build();
     }
 
     @PUT

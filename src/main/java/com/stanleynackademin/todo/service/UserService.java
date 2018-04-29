@@ -5,6 +5,8 @@ import com.stanleynackademin.todo.repository.UserRepository;
 import com.stanleynackademin.todo.service.exception.InvalidUserException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,8 +34,10 @@ public final class UserService {
         return repository.findById(id);
     }
 
-    public Iterable<User> getAllUsers() {
-        return repository.findAll();
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        repository.findAll().forEach(users::add);
+        return users;
     }
 
     public void removeUser(Long id) {
