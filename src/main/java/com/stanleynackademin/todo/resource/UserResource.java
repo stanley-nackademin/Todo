@@ -59,12 +59,6 @@ public final class UserResource {
         return Response.ok(service.getAllUsers()).build();
     }
 
-    @PUT
-    @Path("{id}")
-    public void updateUser(@PathParam("id") Long id, User user) {
-
-    }
-
     @DELETE
     @Path("{id}")
     public Response deleteUser(@PathParam("id") Long id) {

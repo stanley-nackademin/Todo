@@ -40,6 +40,16 @@ public final class TodoService {
         return todos;
     }
 
+    public Optional<Todo> removeTodo(Long id) {
+        Optional<Todo> result = repository.findById(id);
+
+        if (result.isPresent()) {
+            repository.deleteById(id);
+        }
+
+        return result;
+    }
+
     private boolean isValidTodo(Todo todo) {
         if (todo.getDescription() == null || todo.getPriority() == null) {
             return false;

@@ -57,4 +57,13 @@ public final class TodoResource {
     public Response getAll() {
         return Response.ok(service.getAllTodos()).build();
     }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteTodo(@PathParam("id") Long id) {
+        return service.removeTodo(id)
+                .map(t -> Response.noContent())
+                .orElse(Response.status(NOT_FOUND))
+                .build();
+    }
 }
