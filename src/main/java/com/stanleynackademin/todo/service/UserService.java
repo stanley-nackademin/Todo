@@ -26,8 +26,7 @@ public final class UserService {
         String firstName = user.getFirstName().trim();
         String lastName = user.getLastName().trim();
 
-        User newUser = new User(firstName, lastName);
-        return repository.save(newUser);
+        return repository.save(new User(firstName, lastName));
     }
 
     public Optional<User> findUser(Long id) {

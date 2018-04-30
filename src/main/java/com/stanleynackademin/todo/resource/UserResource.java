@@ -37,6 +37,7 @@ public final class UserResource {
     @POST
     public Response addUser(User user) {
         User result = service.addUser(user);
+
         return Response.created(URI.create(uriInfo
                 .getAbsolutePathBuilder()
                 .path(result.getId().toString())
