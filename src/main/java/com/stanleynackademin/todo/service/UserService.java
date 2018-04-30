@@ -36,6 +36,7 @@ public final class UserService {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         repository.findAll().forEach(users::add);
+
         return users;
     }
 

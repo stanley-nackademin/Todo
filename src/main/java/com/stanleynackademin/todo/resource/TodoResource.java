@@ -4,10 +4,7 @@ import com.stanleynackademin.todo.model.Todo;
 import com.stanleynackademin.todo.service.TodoService;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
@@ -16,6 +13,7 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.Response.Status.*;
 
 @Component
 @Consumes(APPLICATION_JSON)
@@ -44,5 +42,19 @@ public final class TodoResource {
                 .path(result.getId().toString())
                 .toString()))
                 .build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response findTodo(@PathParam("id") Long id) {
+        return service.findTodo(id)
+                .map(t -> Response.ok(t))
+                .orElse(Response.status(NOT_FOUND))
+                .build();
+    }
+
+    @GET
+    public Response getAll() {
+        return Response.ok(service.getAllTodos()).build();
     }
 }
