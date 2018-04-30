@@ -1,6 +1,7 @@
 package com.stanleynackademin.todo.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public final class User {
@@ -14,6 +15,9 @@ public final class User {
 
     @Column(nullable = false)
     private String lastName;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Todo> todos;
 
     protected User() {}
 
@@ -32,6 +36,10 @@ public final class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Collection<Todo> getTodos() {
+        return todos;
     }
 
     @Override

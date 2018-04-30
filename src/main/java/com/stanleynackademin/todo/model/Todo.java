@@ -15,6 +15,10 @@ public final class Todo {
     @Column(nullable = false)
     private String priority;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     protected Todo() {}
 
     public Todo(String description, String priority) {
@@ -32,6 +36,10 @@ public final class Todo {
 
     public String getPriority() {
         return priority;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override
