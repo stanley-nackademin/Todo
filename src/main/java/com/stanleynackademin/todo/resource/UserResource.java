@@ -67,6 +67,9 @@ public final class UserResource {
     @DELETE
     @Path("{id}")
     public Response deleteUser(@PathParam("id") Long id) {
-        return null;
+        return service.removeUser(id)
+                .map(u -> Response.noContent())
+                .orElse(Response.status(NOT_FOUND))
+                .build();
     }
 }

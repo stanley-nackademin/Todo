@@ -40,8 +40,14 @@ public final class UserService {
         return users;
     }
 
-    public void removeUser(Long id) {
-        repository.deleteById(id);
+    public Optional<User> removeUser(Long id) {
+        Optional<User> result = repository.findById(id);
+
+        if (result.isPresent()) {
+            repository.deleteById(id);
+        }
+
+        return result;
     }
 
     private boolean isValidUser(User user) {
