@@ -33,9 +33,18 @@ public final class TodoService {
         return repository.findById(id);
     }
 
-    public List<Todo> getAllTodos() {
+    public List<Todo> getAllTodos(Long id, String priority) {
         List<Todo> todos = new ArrayList<>();
-        repository.findAll().forEach(todos::add);
+
+        if (id == 0) {
+            repository.findAll().forEach(todos::add);
+        } else if (!(id == 0)) {
+            if (priority.equals("all")) {
+                repository.findAllByUser_Id(id).forEach(todos::add);
+            } else {
+                repository.findAllByIdAndPriority(id, priority).forEach(todos::add);
+            }
+        }
 
         return todos;
     }

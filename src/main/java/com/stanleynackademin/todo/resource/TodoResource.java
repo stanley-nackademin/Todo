@@ -54,8 +54,10 @@ public final class TodoResource {
     }
 
     @GET
-    public Response getAll() {
-        return Response.ok(service.getAllTodos()).build();
+    public Response getAll(@QueryParam("user") @DefaultValue("0") Long id,
+                           @QueryParam("priority") @DefaultValue("all") String priority) {
+
+        return Response.ok(service.getAllTodos(id, priority)).build();
     }
 
     @DELETE

@@ -1,5 +1,7 @@
 package com.stanleynackademin.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -7,7 +9,7 @@ import java.util.Collection;
 public final class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -16,7 +18,8 @@ public final class User {
     @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Collection<Todo> todos;
 
     protected User() {}
