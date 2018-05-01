@@ -42,7 +42,7 @@ public final class TodoService {
             if (priority.equals("all")) {
                 repository.findAllByUser_Id(id).forEach(todos::add);
             } else {
-                repository.findAllByIdAndPriority(id, priority).forEach(todos::add);
+                repository.findAllByUser_IdAndPriority(id, priority).forEach(todos::add);
             }
         }
 

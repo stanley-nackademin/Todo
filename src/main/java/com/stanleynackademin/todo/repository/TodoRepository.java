@@ -9,5 +9,5 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
 
     List<Todo> findAllByUser_Id(Long id);
 
-    List<Todo> findAllByIdAndPriority(Long id, String priority);
+    List<Todo> findAllByUser_IdAndPriority(Long id, String priority);
 }
