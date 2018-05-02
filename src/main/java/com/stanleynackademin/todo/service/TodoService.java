@@ -1,6 +1,7 @@
 package com.stanleynackademin.todo.service;
 
 import com.stanleynackademin.todo.model.Todo;
+import com.stanleynackademin.todo.model.dto.TodoDto;
 import com.stanleynackademin.todo.repository.TodoRepository;
 import com.stanleynackademin.todo.service.exception.InvalidTodoException;
 import org.springframework.stereotype.Service;
@@ -33,16 +34,16 @@ public final class TodoService {
         return repository.findById(id);
     }
 
-    public List<Todo> getAllTodos(Long id, String priority) {
-        List<Todo> todos = new ArrayList<>();
+    public List<TodoDto> getAllTodos(Long id, String priority) {
+        List<TodoDto> todos = new ArrayList<>();
 
         if (id == 0) {
-            repository.findAll().forEach(todos::add);
+            repository.findAll().forEach(t -> todos.add(convertToDto(t)));
         } else if (!(id == 0)) {
             if (priority.equals("all")) {
-                repository.findAllByUser_Id(id).forEach(todos::add);
+                repository.findAllByUser_Id(id).forEach(t -> todos.add(convertToDto(t)));
             } else {
-                repository.findAllByUser_IdAndPriority(id, priority).forEach(todos::add);
+                repository.findAllByUser_IdAndPriority(id, priority).forEach(t -> todos.add(convertToDto(t)));
             }
         }
 
@@ -67,5 +68,9 @@ public final class TodoService {
         } else {
             return true;
         }
+    }
+
+    private TodoDto convertToDto(Todo todo) {
+        return new TodoDto(todo.getId(), todo.getDescription(), todo.getPriority());
     }
 }
