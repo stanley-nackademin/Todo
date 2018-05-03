@@ -1,6 +1,9 @@
 package com.stanleynackademin.todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public final class User {
@@ -14,6 +17,10 @@ public final class User {
 
     @Column(nullable = false)
     private String lastName;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Collection<Todo> todos;
 
     protected User() {}
 
