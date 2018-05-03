@@ -1,9 +1,6 @@
 package com.stanleynackademin.todo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public final class User {
@@ -24,7 +21,7 @@ public final class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    
+
     public Long getId() {
         return id;
     }
