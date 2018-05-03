@@ -60,6 +60,16 @@ public final class TodoResource {
         return Response.ok(service.getAllTodos(id, priority)).build();
     }
 
+    @PUT
+    @Path("{id}")
+    public Response assignTodo(@QueryParam("user") @DefaultValue("0") Long userId,
+                           @PathParam("id") Long id) {
+        return service.updateTodo(id, userId)
+                .map(t -> Response.noContent())
+                .orElse(Response.status(NOT_FOUND))
+                .build();
+    }
+
     @DELETE
     @Path("{id}")
     public Response deleteTodo(@PathParam("id") Long id) {

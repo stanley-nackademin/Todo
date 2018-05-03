@@ -29,6 +29,12 @@ public final class User {
         this.lastName = lastName;
     }
 
+    public User(Long id, String firstName, String lastName) {
+
+    }
+
+
+
     public Long getId() {
         return id;
     }

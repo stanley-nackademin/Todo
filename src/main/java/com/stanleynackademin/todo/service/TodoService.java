@@ -1,6 +1,7 @@
 package com.stanleynackademin.todo.service;
 
 import com.stanleynackademin.todo.model.Todo;
+import com.stanleynackademin.todo.model.User;
 import com.stanleynackademin.todo.model.dto.TodoDto;
 import com.stanleynackademin.todo.repository.TodoRepository;
 import com.stanleynackademin.todo.service.exception.InvalidTodoException;
@@ -48,6 +49,21 @@ public final class TodoService {
         }
 
         return todos;
+    }
+
+    public Optional<Todo> updateTodo(Long id, Long userId) {
+        Optional<User> user = repository.findByUser_Id(userId);
+        Optional<Todo> todo = repository.findById(id);
+
+        if (user.isPresent() && todo.isPresent()) {
+            Todo result = todo.get();
+            result.assignUser(user.get());
+            repository.save(result);
+
+            return todo;
+        }
+
+        return Optional.empty();
     }
 
     public Optional<Todo> removeTodo(Long id) {
