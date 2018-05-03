@@ -18,23 +18,13 @@ public final class User {
     @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Collection<Todo> todos;
-
     protected User() {}
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
-    public User(Long id, String firstName, String lastName) {
-
-    }
-
-
-
+    
     public Long getId() {
         return id;
     }
@@ -45,10 +35,6 @@ public final class User {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public Collection<Todo> getTodos() {
-        return todos;
     }
 
     @Override
