@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface TodoRepositoryCustom {
 
-    Optional<User> findByUser_Id(Long id);
+    Optional<User> findByUserId(Long id);
 }

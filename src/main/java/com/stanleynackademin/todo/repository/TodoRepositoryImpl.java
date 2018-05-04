@@ -14,7 +14,7 @@ public class TodoRepositoryImpl implements TodoRepositoryCustom {
     private EntityManager manager;
 
     @Override
-    public Optional<User> findByUser_Id(Long id) {
+    public Optional<User> findByUserId(Long id) {
         return Optional.ofNullable(manager.find(User.class, id));
     }
 }

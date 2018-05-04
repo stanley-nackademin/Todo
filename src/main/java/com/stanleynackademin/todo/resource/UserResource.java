@@ -22,10 +22,10 @@ import static javax.ws.rs.core.Response.Status.*;
 public final class UserResource {
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     @Context
-    HttpHeaders headers;
+    private HttpHeaders headers;
 
     private final UserService service;
 
@@ -33,7 +33,6 @@ public final class UserResource {
         this.service = service;
     }
 
-    // TODO: 2018-04-28 Add filter?
     @POST
     public Response addUser(User user) {
         User result = service.addUser(user);
@@ -67,4 +66,6 @@ public final class UserResource {
                 .orElse(Response.status(NOT_FOUND))
                 .build();
     }
+
+    // users/user-id/todos : POST Todo
 }

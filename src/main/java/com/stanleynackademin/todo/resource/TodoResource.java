@@ -22,10 +22,10 @@ import static javax.ws.rs.core.Response.Status.*;
 public final class TodoResource {
 
     @Context
-    UriInfo uriInfo;
+    private UriInfo uriInfo;
 
     @Context
-    HttpHeaders headers;
+    private HttpHeaders headers;
 
     private final TodoService service;
 

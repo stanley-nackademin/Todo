@@ -42,9 +42,9 @@ public final class TodoService {
             repository.findAll().forEach(t -> todos.add(convertToDto(t)));
         } else if (!(id == 0)) {
             if (priority.equals("all")) {
-                repository.findAllByUser_Id(id).forEach(t -> todos.add(convertToDto(t)));
+                repository.findAllByUserId(id).forEach(t -> todos.add(convertToDto(t)));
             } else {
-                repository.findAllByUser_IdAndPriority(id, priority).forEach(t -> todos.add(convertToDto(t)));
+                repository.findAllByUserIdAndPriority(id, priority).forEach(t -> todos.add(convertToDto(t)));
             }
         }
 
@@ -52,7 +52,7 @@ public final class TodoService {
     }
 
     public Optional<Todo> updateTodo(Long id, Long userId) {
-        Optional<User> user = repository.findByUser_Id(userId);
+        Optional<User> user = repository.findByUserId(userId);
         Optional<Todo> todo = repository.findById(id);
 
         if (user.isPresent() && todo.isPresent()) {

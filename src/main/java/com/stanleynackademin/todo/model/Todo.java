@@ -46,10 +46,14 @@ public final class Todo {
         this.user = user;
     }
 
+    public void removeUser() {
+        this.user = null;
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Todo[id:%d, description='%s', priority='%s'",
+                "Todo[id:%d, description='%s', priority='%s']",
                 id, description, priority
         );
     }

@@ -18,7 +18,7 @@ public final class User {
     @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     @JsonIgnore
     private Collection<Todo> todos;
 
@@ -39,6 +39,11 @@ public final class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    @PreRemove
+    private void removeTodos() {
+        todos.forEach(t -> t.removeUser());
     }
 
     @Override
